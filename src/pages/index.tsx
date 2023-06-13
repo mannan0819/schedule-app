@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -6,8 +7,23 @@ import { api } from "~/utils/api";
 import { DemoApp } from "~/components/calendar";
 
 const Home: NextPage = () => {
+  const { data: sessionData } = useSession();
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const avail = api.example.avaliability.useQuery(
+    undefined, // no input
+    { enabled: sessionData?.user !== undefined },
+  );
+  // bg-gradient-to-b from-[#a05dd4] to-[#4e56f4]
   return <div className="">
+    <AuthShowcase />
+    <div className="flex items-center justify-center pt-2">
+      <Link
+        href="/settings"
+        className="rounded-full bg-violet-700/60 px-10 py-3 font-semibold text-white no-underline transition hover:bg-violet-700/20"
+      >
+        Settings
+      </Link>
+    </div>
     <div className="max-w-screen-xl items-center justify-center px-4 py-16">
       <DemoApp />
     </div>
@@ -79,7 +95,7 @@ const AuthShowcase: React.FC = () => {
         {secretMessage && <span> - {secretMessage}</span>}
       </p>
       <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        className="rounded-full bg-violet-700 px-10 py-3 font-semibold text-white no-underline transition hover:bg-violet-700/20"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
