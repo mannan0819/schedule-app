@@ -9,11 +9,10 @@ const events = [
     { title: 'Meeting', start: new Date() }
 ]
 
-export function DemoApp() {
+export function Calendar() {
 
     return (
         <div>
-            <h1>MY CALENDAR</h1>
             <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 headerToolbar={{

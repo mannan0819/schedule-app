@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
-import { DemoApp } from "~/components/calendar";
+import { Calendar } from "~/components/calendar";
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       </Link>
     </div>
     <div className="max-w-screen-xl items-center justify-center px-4 py-16">
-      <DemoApp />
+      <Calendar />
     </div>
   </div>
 
