@@ -14,15 +14,15 @@ export function Avaliability() {
           <div className="flex">
             <Dropdown
               options={timeIncrement(
-                dayjs("2021-01-01 9:00"),
-                dayjs("2021-01-01 17:00")
+                dayjs(`${dayjs().format("YYYY-MM-DD")} 9:00`),
+                dayjs(`${dayjs().format("YYYY-MM-DD")} 17:00`)
               )}
             />
             <span className="px-2 text-white">-</span>
             <Dropdown
               options={timeIncrement(
-                dayjs("2021-01-01 9:00"),
-                dayjs("2021-01-01 17:00")
+                dayjs(`${dayjs().format("YYYY-MM-DD")} 9:00`),
+                dayjs(`${dayjs().format("YYYY-MM-DD")} 17:00`)
               )}
             />
           </div>
